@@ -1,0 +1,623 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+:root {
+    --lm-bg: #f6f8ff;
+    --lm-bg-content: #fefefe;
+    --lm-bg-table-head: #f9fafb;
+    --lm-bg-checkbox: #f3f4f6;
+    --lm-border-color-checkbox: #d1d5db;
+    --lm-text: #4b6a9b;
+    --lm-text-alt: #2b3442;
+    --lm-table-text: #6b7280;
+    --lm-table-head-text: #374151;
+    --lm-shadow: 0 20px 25px -5px rgba(70, 96, 187, 0.2);
+    --lm-shadow-inactive: 0px 16px 30px -10px rgba(0, 0, 0, 0.2);
+    --lm-icon-bg: brightness(100%);
+    /* Btn */
+    --btn: #0079ff;
+    --btn2: #ef4444;
+    --btn-hover: #60abff;
+    --btn2-hover: #f87171;
+}
+
+.app {
+    background-color: var(--lm-bg);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.main {
+    position: relative;
+    overflow-x: auto;
+    box-shadow: var(--lm-shadow);
+    border-radius: 4px;
+}
+
+.table {
+    width: 1000px;
+    max-width: 2000px;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--lm-table-text);
+    text-align: left;
+    border-spacing: 0 2px;
+}
+
+.table-head {
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--lm-table-head-text);
+    text-transform: uppercase;
+    background-color: var(--lm-bg-table-head);
+}
+
+.head-cell {
+    padding: 15px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox {
+    width: 16px;
+    height: 16px;
+    color: var(--btn);
+    background-color: var(--lm-bg-checkbox);
+    border-color: var(--lm-border-color-checkbox);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.checkbox:focus {
+    --tw-ring-color: var(--btn-hover);
+    box-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+}
+
+.sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.col-name {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.table-row {
+    background-color: var(--lm-bg-content);
+}
+
+.table-row:hover {
+    background-color: var(--lm-bg-table-head);
+}
+
+.table-desc {
+    width: 16px;
+    padding: 16px;
+}
+
+.table-data {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.table-action {
+    display: flex;
+    align-items: center;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    gap: 10px;
+}
+
+.edit-btn {
+    all: unset;
+    font-weight: 500;
+    color: var(--btn);
+}
+
+.edit-btn:hover {
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+.remove-btn {
+    all: unset;
+    font-weight: 500;
+    color: var(--btn2);
+}
+
+.remove-btn:hover {
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+.selected-row {
+    background-color: #e9ecef;
+  }  
+
+.searchbar-container {
+    position: relative;
+    background-color: var(--lm-bg-content);
+    border-radius: 4px;
+    box-shadow: var(--lm-shadow);
+    display: flex;
+    height: 100%;
+    padding: 6px;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url(./asset/search-icon.svg);
+    background-repeat: no-repeat;
+    background-position-x: 24px;
+    background-position-y: center;
+    background-size: 20px;
+}
+
+#input {
+    border: none;
+    width: 80%;
+    outline: none;
+    background: none;
+    color: var(--lm-text);
+    padding-left: 50px;
+    height: 40px;
+}
+
+#input::placeholder {
+    color: var(--lm-text);
+    letter-spacing: -0.5px;
+    font-size: 13px;
+
+}
+
+.searchbar-container img {
+    height: 20px;
+    width: 20px;
+    padding: 0px 10px 0px 16px;
+}
+
+.spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.spinner-text {
+    color: var(--lm-table-text);
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+}
+
+.spinner {
+    width: 56px;
+    height: 56px;
+    display: grid;
+    animation: spinner-plncf9 4s infinite;
+}
+
+.spinner::before,
+.spinner::after {
+    content: "";
+    grid-area: 1/1;
+    border: 9px solid;
+    border-radius: 50%;
+    border-color: #474bff #474bff #0000 #0000;
+    mix-blend-mode: darken;
+    animation: spinner-plncf9 1s infinite linear;
+}
+
+.spinner::after {
+    border-color: #0000 #0000 #dbdcef #dbdcef;
+    animation-direction: reverse;
+}
+
+@keyframes spinner-plncf9 {
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+.not-found {
+    text-align: center;
+    vertical-align: middle;
+    background-color: var(--lm-bg-content);
+
+}
+
+.deleted-btn {
+    all: unset;
+    border-radius: 5px;
+    border: none;
+    margin-top: 40px;
+    padding: 8px;
+    background-color: var(--btn2);
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.deleted-btn:hover {
+    cursor: pointer;
+    background-color: var(--btn2-hover);
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 30px;
+}
+
+.page-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    background-color: var(--btn);
+    color: #fff;
+}
+
+.page-btn:hover {
+    background-color: var(--btn-hover);
+}
+
+.page-btn:disabled {
+    background-color: gainsboro;
+}
+
+.pagination .active {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--btn);
+    border-radius: 50%;
+    color: var(--btn);
+    background-color: gainsboro;
+    cursor: pointer;
+}
+
+.ReactModal__Content {
+    position: relative;
+    border: 1px solid #ccc;
+    background-color: var(--lm-bg-content);
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+    width: 30%;
+    height: auto;
+    max-height: 60vh;
+    margin: auto;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 20px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Additional CSS to ensure modal is visible when open */
+.ReactModal__Overlay--after-open .ReactModal__Content {
+    opacity: 1;
+}
+
+/* Additional CSS to animate modal when closing */
+.ReactModal__Overlay--before-close .ReactModal__Content {
+    opacity: 0;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.modal-title {
+    margin: 0;
+    color: var(--lm-table-head-text);
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input-field label {
+    margin-bottom: 5px;
+}
+
+.input-field input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal-close-button {
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid #ccc;
+}
+
+.modal-form button {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--btn);
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.modal-form button:hover {
+    background-color: var(--btn-hover);
+}
+
+/* ... Existing media queries for large screen here... */
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        margin: 20px 10px;
+    }
+
+    .main {
+        overflow-x: auto;
+    }
+
+    .table {
+        width: 100%;
+        max-width: none;
+    }
+
+    .head-cell,
+    .col-name,
+    .table-data,
+    .table-action {
+        padding: 12px;
+    }
+
+    #input {
+        padding-left: 40px;
+        width: 100%;
+    }
+
+    .searchbar-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .searchbar-container img {
+        padding: 10px 0;
+    }
+
+    .table-action {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .edit-btn,
+    .remove-btn {
+        margin: 5px 0;
+    }
+
+    .deleted-btn {
+        padding: 6px;
+        margin-top: 25px;
+    }
+
+    .pagination {
+        gap: 20px;
+    }
+
+    .page-btn {
+        width: 35px;
+        height: 35px;
+    }
+
+    .pagination .active {
+        width: 35px;
+        height: 35px;
+    }
+
+    .ReactModal__Content {
+        width: 60%;
+    }
+}
+
+/* ... Existing media queries for smaller screens here... */
+
+@media screen and (max-width: 768px) {
+    .container {
+        margin: 20px 10px;
+    }
+
+    .main {
+        overflow-x: auto;
+    }
+
+    .table {
+        width: 100%;
+        max-width: none;
+    }
+
+    .head-cell,
+    .col-name,
+    .table-data,
+    .table-action {
+        padding: 10px;
+    }
+
+    #input {
+        padding-left: 50px;
+        width: 100%;
+        background-position-x: 10px;
+    }
+
+    .searchbar-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .searchbar-container img {
+        padding: 10px 0;
+    }
+
+    .table-action {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .edit-btn,
+    .remove-btn {
+        margin: 5px 0;
+    }
+
+    .deleted-btn {
+        padding: 5px;
+        margin-top: 20px;
+    }
+
+    .pagination {
+        gap: 15px;
+    }
+
+    .page-btn {
+        width: 30px;
+        height: 30px;
+    }
+
+    .pagination .active {
+        width: 30px;
+        height: 30px;
+    }
+
+    .ReactModal__Content {
+        width: 80%;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        margin: 10px 2%;
+        width: 96%;
+    }
+
+    .main {
+        width: 100%;
+    }
+
+    .table {
+        width: 100%;
+    }
+
+    .head-cell,
+    .col-name,
+    .table-data,
+    .table-action {
+        padding: 8px;
+    }
+
+    #input {
+        padding-left: 40px;
+    }
+
+    .searchbar-container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .searchbar-container img {
+        padding: 10px 0px;
+    }
+
+    .table-action {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .edit-btn,
+    .remove-btn {
+        margin: 5px 0;
+    }
+
+    .deleted-btn {
+        padding: 4px;
+        margin-top: 15px;
+    }
+
+    .pagination {
+        gap: 10px;
+    }
+
+    .page-btn {
+        width: 25px;
+        height: 25px;
+    }
+
+    .pagination .active {
+        width: 25px;
+        height: 25px;
+    }
+
+    .page-btn,
+    .page-btn:disabled,
+    .pagination .active {
+        box-sizing: border-box;
+        line-height: 11px;
+        height: 25px;
+        margin: auto;
+    }
+
+    .ReactModal__Content {
+        width: 80%;
+        height: 45vh;
+        
+    }
+}
